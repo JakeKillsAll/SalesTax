@@ -12,10 +12,10 @@ public class SalesTax
       double purchaseAmnt = Double.parseDouble(JOptionPane.showInputDialog(null, "Please enter your purchase amount."));
       
       //Does all required calculations for the output and rounds to two places if applicable
-      double totalStateTax = round(purchaseAmnt * STATE_TAX,2);
-      double totalCountyTax = round(purchaseAmnt * COUNTY_TAX,2);
-      double totalSalesTax = round(totalStateTax + totalCountyTax,2);
-      double saleTotal = round(totalSalesTax + purchaseAmnt,2);
+      double totalStateTax = round(purchaseAmnt * STATE_TAX);
+      double totalCountyTax = round(purchaseAmnt * COUNTY_TAX);
+      double totalSalesTax = round(totalStateTax + totalCountyTax);
+      double saleTotal = round(totalSalesTax + purchaseAmnt);
       
       //Sets the format for the output
       String output = "Purchase: \t$" + purchaseAmnt + '\n' +
@@ -31,14 +31,9 @@ public class SalesTax
       System.exit(0);
    }
    
-   //This method returns a rounded value if the values is longer than 2 decimals
-   public static double round(double value, int places) 
+   //This method returns a rounded value to two decimal places
+   public static double round(double value) 
    {
-       if (places < 0) return value;
-   
-       long factor = (long) Math.pow(10, places);
-       value = value * factor;
-       long tmp = Math.round(value);
-       return (double) tmp / factor;
+      return(double) Math.round(value * 100) / 100;
    }
 }
